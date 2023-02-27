@@ -2,9 +2,18 @@ import { Auth, ThemeSupa } from "@supabase/auth-ui-react";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Account from "components/Account";
 import Link from "next/link";
+import Product from "components/Product";
+import { useRouter } from "next/router";
+
+
 
 
 const Home = () => {
+  const router = useRouter();
+  const Redirect =()=>{
+    router.push('/advancedsearch')
+    return (<></>)
+  }
   const session = useSession();
   const supabase = useSupabaseClient();
 
@@ -19,10 +28,8 @@ const Home = () => {
         />
       ) : (
         // <Account session={session} />
-        <Link href={'/advancedsearch'}>
-        <a>search</a>
-        </Link>
-
+        // <Product />
+        <Redirect/ >
       )}
     </div>
   );
