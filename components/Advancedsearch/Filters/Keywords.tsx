@@ -17,8 +17,10 @@ function FormComponent() {
   };
 
   const handleAddChip = () => {
-    setChipData([...chipData, { label: value }]);
-    setValue('');
+    if (value.trim() !== '') {
+      setChipData([...chipData, { label: value.trim() }]);
+      setValue('');
+    }
   };
 
   const handleDeleteChip = (chipToDelete:any) => () => {
@@ -27,7 +29,7 @@ function FormComponent() {
 
   return (
     <div>
-      <TextField label="Keywords" value={value} onChange={handleInputChange} style={{ background: '#aaa', borderRadius: '5px' }} />
+      <TextField label="Keywords" value={value} onChange={handleInputChange} style={{  borderRadius: '5px' }} />
       <button onClick={handleAddChip}>Add</button>
       <Box mt={2}>
         {chipData.map((chip, index) => (
@@ -36,6 +38,7 @@ function FormComponent() {
             label={chip.label}
             onDelete={handleDeleteChip(chip)}
             style={{ marginRight: 8, marginBottom: 8 }}
+            color='success'
           />
         ))}
       </Box>
