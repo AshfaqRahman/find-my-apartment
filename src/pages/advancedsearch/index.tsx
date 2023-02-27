@@ -1,17 +1,40 @@
-import Result from "components/Advancedsearch/Result"
-import AddressForm from "components/checkout/AddressForm"
-import Checkout from "components/checkout/Checkout"
-import PaymentForm from "components/checkout/PaymentForm"
-import Review from "components/checkout/Review"
+import Result from "components/Advancedsearch/Result";
+import Appbar from "components/Appbar";
+import Review from "components/checkout/Review";
+import React from "react";
 
 
-function advancedSearch(){
+const styles = {
+    container: {
+        display: "grid",
+        padding: "10px",
+        gridTemplateColumns: "20% 1fr",
+    },
+    columnLeft: {
+        padding:"10px",
+        borderRadius: "8px",
+        backgroundColor: "#333131",
+    },
+    columnRight: {
+        borderRadius: "8px",
+    },
+};
+
+
+const advancedSearch = () => {
     return (
         <>
-        <Result />
+            <Appbar />
+            <div style={styles.container}>
+                <div style={styles.columnLeft}>
+                    <Review />
+                </div>
+                <div style={styles.columnRight}>
+                    <Result />
+                </div>
+            </div>
         </>
-        
-    )
-}
+    );
+};
 
-export default advancedSearch
+export default advancedSearch;

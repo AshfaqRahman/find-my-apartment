@@ -16,20 +16,24 @@ const cards = [
 ];
 
 export default function SearchedProduct() {
+
+    const width = {
+        width: "100%"
+    }
     return (
-        <div className="container">
-            <div className="row" >
-                {cards.map((card) => (
-                    <div className="col-md-12" key={card.id}>
-                        <Productcards
-                            imageUrl={card.imageUrl}
-                            title={card.title}
-                            description={card.description}
-                        />
-                    </div>
-                ))}
-            </div>
+
+        <div className="row">
+            {cards.map((card) => (
+                <div className="col-md-12" key={card.id}>
+                    <Productcards
+                        imageUrl={card.imageUrl}
+                        title={card.title}
+                        description={card.description}
+                    />
+                </div>
+            ))}
         </div>
+
 
     );
 }
