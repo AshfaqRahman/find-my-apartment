@@ -1,20 +1,19 @@
-import { Chip } from '@mui/material';
 import Checkbox from '@mui/material/Checkbox';
+import Chip from '@mui/material/Chip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Grid from '@mui/material/Grid';
 import React, { useState } from 'react';
-import KingBedSharpIcon from '@mui/icons-material/KingBedSharp';
+import BathroomSharpIcon from '@mui/icons-material/BathroomSharp';
 
 
-function Bedroom() {
+function Bath() {
   const [checked, setChecked] = useState({
     option1: false,
     option2: false,
     option3: false,
     option4: false,
     option5: false,
-    option6: false,
   });
 
   const handleChange = (event:any) => {
@@ -23,7 +22,7 @@ function Bedroom() {
 
   return (
     <>
-    <Chip icon={<KingBedSharpIcon color="success" />} label="Bedroom" color='success' variant="outlined" />
+    <Chip icon={<BathroomSharpIcon color="success" />} label="Bathroom" color='success' variant="outlined"  />
     <Grid container spacing={3}>
       <Grid item xs={6}>
         <FormGroup>
@@ -80,17 +79,7 @@ function Bedroom() {
                 name="option5"
               />
             }
-            label="5"
-          />
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={checked.option6}
-                onChange={handleChange}
-                name="option6"
-              />
-            }
-            label="5+"
+            label="4+"
           />
         </FormGroup>
       </Grid>
@@ -99,4 +88,4 @@ function Bedroom() {
   );
 }
 
-export default Bedroom;
+export default Bath;
