@@ -35,8 +35,7 @@ const theme = createTheme();
 
 export default function Album() {
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
+    <>
       <AppBar position="relative">
         <Toolbar>
           <CameraIcon sx={{ mr: 2 }} />
@@ -132,6 +131,6 @@ export default function Album() {
         <Copyright />
       </Box>
       {/* End footer */}
-    </ThemeProvider>
+      </>
   );
 }

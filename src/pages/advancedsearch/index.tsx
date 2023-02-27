@@ -1,11 +1,9 @@
 import { Box, Grid, Paper, styled } from "@mui/material";
 import Filters from "components/Advancedsearch/Filters/Filters";
 import List from "components/Advancedsearch/List/List";
-import AddressForm from "components/checkout/AddressForm";
-import Checkout from "components/checkout/Checkout";
-import PaymentForm from "components/checkout/PaymentForm";
-import Review from "components/checkout/Review";
-import styles from "src/styles/Home.module.css";
+import Result from "components/Advancedsearch/Result";
+import Appbar from "components/Appbar";
+import React from "react";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -15,21 +13,38 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-function advancedSearch() {
-  return (
-    <>
-      <div className={styles.mt50}>
-        <Grid container spacing={3}>
-          <Grid xs={4}>
-            <Item><Filters/></Item>
-          </Grid>
-          <Grid xs={8}>
-            <Item><List/></Item>
-          </Grid>
-        </Grid>
-      </div>
-    </>
-  );
-}
+const styles = {
+    container: {
+        display: "grid",
+        padding: "10px",
+        gridTemplateColumns: "20% 1fr",
+    },
+    columnLeft: {
+        padding:"10px",
+        borderRadius: "8px",
+        backgroundColor: "#333131",
+    },
+    columnRight: {
+        borderRadius: "8px",
+    },
+};
+
+
+const advancedSearch = () => {
+    return (
+        <>
+            <Appbar />
+            <div style={styles.container}>
+                <div style={styles.columnLeft}>
+                    <Filters />
+                    <List />
+                </div>
+                <div style={styles.columnRight}>
+                    <Result />
+                </div>
+            </div>
+        </>
+    );
+};
 
 export default advancedSearch;
