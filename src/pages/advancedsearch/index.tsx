@@ -5,6 +5,7 @@ import Bedroom from "components/Advancedsearch/Filters/Bedroom";
 import Budget from "components/Advancedsearch/Filters/Budget";
 import Facilities from "components/Advancedsearch/Filters/Facilities";
 import Filters from "components/Advancedsearch/Filters/Filters";
+import Keywords from "components/Advancedsearch/Filters/Keywords";
 import Mapsearch from "components/Advancedsearch/Filters/Mapsearch";
 import Save_and_search from "components/Advancedsearch/Filters/Save_and_search";
 import List from "components/Advancedsearch/List/List";
@@ -50,6 +51,7 @@ const advancedSearch = () => {
                   <Budget />
                   <Area />
                   <Facilities />
+                  <Keywords />
                   <Filters />
                   <List />
                 </div>
