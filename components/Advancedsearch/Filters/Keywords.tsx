@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
@@ -30,7 +31,7 @@ function FormComponent() {
   return (
     <div>
       <TextField label="Keywords" value={value} onChange={handleInputChange} style={{  borderRadius: '5px' }} />
-      <button onClick={handleAddChip}>Add</button>
+      <Button onClick={handleAddChip} color='success'>Add</Button>
       <Box mt={2}>
         {chipData.map((chip, index) => (
           <Chip
