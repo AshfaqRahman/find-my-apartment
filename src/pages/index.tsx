@@ -4,6 +4,7 @@ import Account from "components/Account";
 import Link from "next/link";
 
 
+
 const Home = () => {
   const session = useSession();
   const supabase = useSupabaseClient();
