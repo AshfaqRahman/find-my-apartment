@@ -7,19 +7,8 @@ import React, { useState } from 'react';
 import KingBedSharpIcon from '@mui/icons-material/KingBedSharp';
 
 
-function Bedroom() {
-  const [checked, setChecked] = useState({
-    option1: false,
-    option2: false,
-    option3: false,
-    option4: false,
-    option5: false,
-    option6: false,
-  });
-
-  const handleChange = (event:any) => {
-    setChecked({ ...checked, [event.target.name]: event.target.checked });
-  };
+export default function Bedroom(props: any) {
+  let checked = props.options ;
 
   return (
     <>
@@ -31,7 +20,7 @@ function Bedroom() {
             control={
               <Checkbox
                 checked={checked.option1}
-                onChange={handleChange}
+              onChange={(e) => props.handleChange(e)}
                 name="option1"
               />
             }
@@ -40,8 +29,8 @@ function Bedroom() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={checked.option2}
-                onChange={handleChange}
+              checked={checked.option2}
+              onChange={(e) => props.handleChange(e)}
                 name="option2"
               />
             }
@@ -50,8 +39,8 @@ function Bedroom() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={checked.option3}
-                onChange={handleChange}
+              checked={checked.option3}
+              onChange={(e) => props.handleChange(e)}
                 name="option3"
               />
             }
@@ -65,8 +54,8 @@ function Bedroom() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={checked.option4}
-                onChange={handleChange}
+              checked={checked.option4}
+              onChange={(e) => props.handleChange(e)}
                 name="option4"
               />
             }
@@ -75,8 +64,8 @@ function Bedroom() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={checked.option5}
-                onChange={handleChange}
+              checked={checked.option5}
+              onChange={(e) => props.handleChange(e)}
                 name="option5"
               />
             }
@@ -85,8 +74,8 @@ function Bedroom() {
           <FormControlLabel
             control={
               <Checkbox
-                checked={checked.option6}
-                onChange={handleChange}
+              checked={checked.option6}
+              onChange={(e) => props.handleChange(e)}
                 name="option6"
               />
             }
@@ -99,4 +88,3 @@ function Bedroom() {
   );
 }
 
-export default Bedroom;

@@ -13,7 +13,7 @@ import Save_and_search from "components/Advancedsearch/Filters/save_and_search";
 import List from "components/Advancedsearch/List/List";
 import Result from "components/Advancedsearch/Result";
 import Appbar from "components/Appbar";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Database } from "utils/database.types";
 type Apartment = Database["public"]["Tables"]["apartment"]["Row"];
 type Apartment = Database["public"]["Tables"]["apartment"]["Row"];
@@ -48,6 +48,20 @@ const AdvancedSearch = ({ session }: { session: Session }) => {
     const supabase = useSupabaseClient<Database>();
 
     // const user = useUser();
+    const [bedroom, setBedroom] = useState(0);
+    const [checkedBedroom, setCheckedBedroom] = useState({
+        option1: false,
+        option2: false,
+        option3: false,
+        option4: false,
+        option5: false,
+        option6: false,
+      });
+    
+      const handleBedroomChange = (event:any) => {
+        setCheckedBedroom({ ...checkedBedroom, [event.target.name]: event.target.checked });
+        
+      };
 
 
     
@@ -95,7 +109,7 @@ const AdvancedSearch = ({ session }: { session: Session }) => {
                     <Place />
                   <Save_and_search />
                   {/* <Mapsearch /> */}
-                  <Bedroom />
+                  <Bedroom options={checkedBedroom} handleChange={handleBedroomChange}/>
                   <Bath />
                   <Budget />
                   <Area />
