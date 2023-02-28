@@ -6,18 +6,22 @@ import {
 } from "@supabase/auth-helpers-react";
 import { Database } from "../utils/database.types";
 import Avatar from "./Avatar";
-type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
+import { redirect } from "next/dist/server/api-utils";
+import { useRouter } from "next/router";
+type Profiles = Database["public"]["Tables"]["user"]["Row"];
 
 export default function Account({ session }: { session: Session }) {
   const supabase = useSupabaseClient<Database>();
   const user = useUser();
   const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState<Profiles["username"]>(null);
-  const [website, setWebsite] = useState<Profiles["website"]>(null);
-  const [avatar_url, setAvatarUrl] = useState<Profiles["avatar_url"]>(null);
+  const [username, setUsername] = useState<Profiles["username"]>("");
+  const [website, setWebsite] = useState<Profiles["name"]>("");
+  const [avatar_url, setAvatarUrl] = useState<Profiles["phone_no"]>("");
 
+
+  const router = useRouter();
   useEffect(() => {
-    getProfile();
+    
   }, [session]);
 
   async function getProfile() {
@@ -26,19 +30,19 @@ export default function Account({ session }: { session: Session }) {
       if (!user) throw new Error("No user");
 
       let { data, error, status } = await supabase
-        .from("profiles")
-        .select(`username, website, avatar_url`)
-        .eq("id", user.id)
-        .single();
+        .from("user")
+        .select()
+
+      console.log(data);
 
       if (error && status !== 406) {
         throw error;
       }
 
       if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
+        // setUsername(data.username);
+        // setWebsite(data.website);
+        // setAvatarUrl(data.avatar_url);
       }
     } catch (error) {
       alert("Error loading user data!");
