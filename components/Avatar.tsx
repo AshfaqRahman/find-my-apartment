@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Database } from "../utils/database.types";
-type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
+type Profiles = Database["public"]["Tables"]["user"]["Row"];
 
 export default function Avatar({
   uid,
@@ -10,12 +10,12 @@ export default function Avatar({
   onUpload,
 }: {
   uid: string;
-  url: Profiles["avatar_url"];
+  url: Profiles["phone_no"];
   size: number;
   onUpload: (url: string) => void;
 }) {
   const supabase = useSupabaseClient<Database>();
-  const [avatarUrl, setAvatarUrl] = useState<Profiles["avatar_url"]>(null);
+  const [avatarUrl, setAvatarUrl] = useState<Profiles["phone_no"]>("");
   const [uploading, setUploading] = useState(false);
 
   useEffect(() => {
