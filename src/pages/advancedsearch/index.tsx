@@ -1,4 +1,5 @@
 import { Box, Grid, Paper, styled } from "@mui/material";
+import { useSupabaseClient, useUser, Session } from "@supabase/auth-helpers-react";
 import Area from "components/Advancedsearch/Filters/Area";
 import Bath from "components/Advancedsearch/Filters/Bath";
 import Bedroom from "components/Advancedsearch/Filters/Bedroom";
@@ -11,7 +12,10 @@ import Save_and_search from "components/Advancedsearch/Filters/Save_and_search";
 import List from "components/Advancedsearch/List/List";
 import Result from "components/Advancedsearch/Result";
 import Appbar from "components/Appbar";
-import React from "react";
+import React, { useEffect } from "react";
+import { Database } from "utils/database.types";
+type Apartment = Database["public"]["Tables"]["apartment"]["Row"];
+type Apartment = Database["public"]["Tables"]["apartment"]["Row"];
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -38,9 +42,52 @@ const styles = {
 };
 
 
-const advancedSearch = () => {
+const AdvancedSearch = ({ session }: { session: Session }) => {
+
+    const supabase = useSupabaseClient<Database>();
+
+    // const user = useUser();
+
+
+    
+    let getAllAppartments = async () => {
+        try {
+            let addresses = await supabase
+              .from("address")
+              .select();
+            let apartments = await supabase
+              .from("apartment")
+              .select(`aprt_id, price, addr_id`);
+      
+            if (addresses.error && addresses.status !== 406) {
+                console.log(addresses.error);
+            }
+      
+            if (addresses.data) {
+              console.log(addresses.data);
+            }
+          } catch (error) {
+            alert("Error loading user data!");
+            console.log(error);
+          } 
+
+    }
+    useEffect( () => {
+        getAllAppartments();
+        // console.log(data);
+    }, [session])
+
+
     return (
         <>
+        {/* <div>
+        <button
+          className="button block"
+          onClick={() => supabase.auth.signOut()}
+        >
+          Sign Out
+        </button>
+      </div> */}
             <Appbar />
             <div style={styles.container}>
                 <div style={styles.columnLeft}>
@@ -63,4 +110,4 @@ const advancedSearch = () => {
     );
 };
 
-export default advancedSearch;
+export default AdvancedSearch;
