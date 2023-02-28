@@ -15,8 +15,8 @@ export default function Account({ session }: { session: Session }) {
   const user = useUser();
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState<Profiles["username"]>("");
-  const [website, setWebsite] = useState<Profiles["name"]>("");
-  const [avatar_url, setAvatarUrl] = useState<Profiles["phone_no"]>("");
+  const [name, setname] = useState<Profiles["name"]>("");
+  const [phone_no, setAvatarUrl] = useState<Profiles["phone_no"]>("");
 
 
   const router = useRouter();
@@ -41,8 +41,8 @@ export default function Account({ session }: { session: Session }) {
 
       if (data) {
         // setUsername(data.username);
-        // setWebsite(data.website);
-        // setAvatarUrl(data.avatar_url);
+        // setname(data.name);
+        // setAvatarUrl(data.phone_no);
       }
     } catch (error) {
       alert("Error loading user data!");
@@ -54,12 +54,12 @@ export default function Account({ session }: { session: Session }) {
 
   async function updateProfile({
     username,
-    website,
-    avatar_url,
+    name,
+    phone_no,
   }: {
     username: Profiles["username"];
-    website: Profiles["website"];
-    avatar_url: Profiles["avatar_url"];
+    name: Profiles["name"];
+    phone_no: Profiles["phone_no"];
   }) {
     try {
       setLoading(true);
@@ -68,8 +68,8 @@ export default function Account({ session }: { session: Session }) {
       const updates = {
         id: user.id,
         username,
-        website,
-        avatar_url,
+        name,
+        phone_no,
         updated_at: new Date().toISOString(),
       };
 
@@ -88,11 +88,11 @@ export default function Account({ session }: { session: Session }) {
     <div className="form-widget">
       <Avatar
         uid={user!.id}
-        url={avatar_url}
+        url={phone_no}
         size={150}
         onUpload={(url) => {
           setAvatarUrl(url);
-          updateProfile({ username, website, avatar_url: url });
+          updateProfile({ username, name, phone_no: url });
         }}
       />
       <div>
@@ -109,19 +109,19 @@ export default function Account({ session }: { session: Session }) {
         />
       </div>
       <div>
-        <label htmlFor="website">Website</label>
+        <label htmlFor="name">name</label>
         <input
-          id="website"
-          type="website"
-          value={website || ""}
-          onChange={(e) => setWebsite(e.target.value)}
+          id="name"
+          type="name"
+          value={name || ""}
+          onChange={(e) => setname(e.target.value)}
         />
       </div>
 
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
+          onClick={() => updateProfile({ username, name, phone_no })}
           disabled={loading}
         >
           {loading ? "Loading ..." : "Update"}

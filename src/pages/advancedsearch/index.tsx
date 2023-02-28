@@ -15,7 +15,7 @@ import Result from "components/Advancedsearch/Result";
 import Appbar from "components/Appbar";
 import React, { useEffect, useState } from "react";
 import { Database } from "utils/database.types";
-type Apartment = Database["public"]["Tables"]["apartment"]["Row"];
+// type Apartment = Database["public"]["Tables"]["apartment"]["Row"];
 type Apartment = Database["public"]["Tables"]["apartment"]["Row"];
 
 const Item = styled(Paper)(({ theme }) => ({
