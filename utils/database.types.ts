@@ -34,7 +34,8 @@ export interface Database {
           avatar_url?: string | null
           website?: string | null
         }
-      }
+      },
+      
     }
     Views: {
       [_ in never]: never
