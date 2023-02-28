@@ -2,13 +2,14 @@ import { Box, Grid, Paper, styled } from "@mui/material";
 import { useSupabaseClient, useUser, Session } from "@supabase/auth-helpers-react";
 import Area from "components/Advancedsearch/Filters/Area";
 import Bath from "components/Advancedsearch/Filters/Bath";
-import Bedroom from "components/Advancedsearch/Filters/Bedroom";
+import Bedroom from "components/Advancedsearch/Filters/bedroom";
 import Budget from "components/Advancedsearch/Filters/Budget";
 import Facilities from "components/Advancedsearch/Filters/Facilities";
 import Filters from "components/Advancedsearch/Filters/Filters";
 import Keywords from "components/Advancedsearch/Filters/Keywords";
 import Mapsearch from "components/Advancedsearch/Filters/Mapsearch";
-import Save_and_search from "components/Advancedsearch/Filters/Save_and_search";
+import Place from "components/Advancedsearch/Filters/Place";
+import Save_and_search from "components/Advancedsearch/Filters/save_and_search";
 import List from "components/Advancedsearch/List/List";
 import Result from "components/Advancedsearch/Result";
 import Appbar from "components/Appbar";
@@ -91,6 +92,7 @@ const AdvancedSearch = ({ session }: { session: Session }) => {
             <Appbar />
             <div style={styles.container}>
                 <div style={styles.columnLeft}>
+                    <Place />
                   <Save_and_search />
                   {/* <Mapsearch /> */}
                   <Bedroom />
@@ -98,9 +100,9 @@ const AdvancedSearch = ({ session }: { session: Session }) => {
                   <Budget />
                   <Area />
                   <Facilities />
-                  <Keywords />
-                  <Filters />
-                  <List />
+                  {<Keywords />
+                  /* <Filters />
+                  <List /> */}
                 </div>
                 <div style={styles.columnRight}>
                     <Result />
