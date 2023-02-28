@@ -7,18 +7,8 @@ import React, { useState } from 'react';
 import BathroomSharpIcon from '@mui/icons-material/BathroomSharp';
 
 
-function Bath() {
-  const [checked, setChecked] = useState({
-    option1: false,
-    option2: false,
-    option3: false,
-    option4: false,
-    option5: false,
-  });
-
-  const handleChange = (event:any) => {
-    setChecked({ ...checked, [event.target.name]: event.target.checked });
-  };
+function Bath(props: any) {
+  let checked = props.options ;
 
   return (
     <>
@@ -30,7 +20,7 @@ function Bath() {
             control={
               <Checkbox
                 checked={checked.option1}
-                onChange={handleChange}
+                onChange={props.handleChange}
                 name="option1"
               />
             }
@@ -40,7 +30,7 @@ function Bath() {
             control={
               <Checkbox
                 checked={checked.option2}
-                onChange={handleChange}
+                onChange={props.handleChange}
                 name="option2"
               />
             }
@@ -50,7 +40,7 @@ function Bath() {
             control={
               <Checkbox
                 checked={checked.option3}
-                onChange={handleChange}
+                onChange={props.handleChange}
                 name="option3"
               />
             }
@@ -65,7 +55,7 @@ function Bath() {
             control={
               <Checkbox
                 checked={checked.option4}
-                onChange={handleChange}
+                onChange={props.handleChange}
                 name="option4"
               />
             }
@@ -75,7 +65,7 @@ function Bath() {
             control={
               <Checkbox
                 checked={checked.option5}
-                onChange={handleChange}
+                onChange={props.handleChange}
                 name="option5"
               />
             }
