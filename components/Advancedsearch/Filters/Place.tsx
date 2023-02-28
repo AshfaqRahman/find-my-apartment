@@ -5,25 +5,38 @@ import TextField from '@mui/material/TextField';
 import React, { useState } from 'react';
 
 
-interface SearchResult {
-    id: number;
-    name: string;
-    // add any other properties here
+interface LocationIQResult {
+    place_id: string;
+    licence: string;
+    osm_type: string;
+    osm_id: string;
+    boundingbox: [string, string, string, string];
+    lat: string;
+    lon: string;
+    display_name: string;
+    class: string;
+    type: string;
+    importance: number;
+    icon: string;
 }
+  
 
 function Index() {
     const [searchValue, setSearchValue] = useState('');
-    const [searchResults, setSearchResults] = useState<SearchResult[]>([]);
+    const [searchResults, setSearchResults] = useState<LocationIQResult[]>([]);
 
     const handleSearch = async () => {
         //${searchValue}
-        const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
+        // url encode
+        const encodedSearchValue = encodeURIComponent(searchValue);
+        const response : any = await fetch(`https://us1.locationiq.com/v1/search?key=pk.9460d7ffd98baf8b6d8c01850b4c6b41&q=${encodedSearchValue}&format=json`);
+        // console.log(response)
         const data = await response.json();
         console.log(data)
         setSearchResults(data);
     };
 
-    const handleChipClick = (result: SearchResult) => {
+    const handleChipClick = (result: LocationIQResult) => {
         console.log(result);
     };
 
@@ -48,8 +61,8 @@ function Index() {
             }}>
                 {searchResults.map((result) => (
                     <Chip
-                        key={result.id}
-                        label={result.name}
+                        key={result.place_id}
+                        label={result.display_name}
                         clickable
                         onClick={() => handleChipClick(result)}
                     />
